@@ -1,5 +1,7 @@
 # control-panel
 
+***Update: has been fully merged into [upstream](https://github.com/freeman-lab/control-panel) 🎉***
+
 [![NPM version][npm-image]][npm-url]
 ![experimental][experimental-image]
 [![js-standard-style][standard-image]][standard-url]

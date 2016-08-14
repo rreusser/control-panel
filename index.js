@@ -122,7 +122,15 @@ function Plate (items, opts) {
 
     element.on('input', function (data) {
       state[item.label] = data
-      self.emit('input', state)
+      self.emit('input', state, item.label)
+    })
+
+    element.on('start', function () {
+      self.emit('start')
+    })
+
+    element.on('end', function () {
+      self.emit('end')
     })
   })
 

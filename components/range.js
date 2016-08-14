@@ -109,4 +109,12 @@ function Range (root, opts, theme, uuid) {
     value.innerHTML = scaledValue
     self.emit('input', scaledValue)
   }
+
+  input.onmousedown = function () {
+    self.emit('start')
+  }
+
+  input.onmouseup = function () {
+    self.emit('end')
+  }
 }

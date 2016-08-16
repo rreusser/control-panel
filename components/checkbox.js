@@ -29,4 +29,8 @@ function Checkbox (root, opts, theme, uuid) {
   input.onchange = function (data) {
     self.emit('input', data.target.checked)
   }
+
+  this.set = function (newValue) {
+    input.checked = !!newValue
+  }
 }

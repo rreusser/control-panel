@@ -53,4 +53,11 @@ function Select (root, opts, theme, uuid) {
   input.onchange = function (data) {
     self.emit('input', data.target.value)
   }
+
+  this.set = function (newValue) {
+    newValue = newValue.toString()
+    if (opts.options.indexOf(newValue) !== -1) {
+      input.value = newValue
+    }
+  }
 }

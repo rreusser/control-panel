@@ -117,4 +117,9 @@ function Range (root, opts, theme, uuid) {
   input.onmouseup = function () {
     self.emit('end')
   }
+
+  this.set = function (newValue) {
+    input.value = scaleValueInverse(newValue)
+    value.innerHTML = scaleValue(parseFloat(input.value))
+  }
 }

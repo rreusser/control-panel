@@ -39,4 +39,8 @@ function Text (root, opts, theme, uuid) {
   input.oninput = function (data) {
     self.emit('input', data.target.value)
   }
+
+  this.set = function (newValue) {
+    input.value = newValue.toString()
+  }
 }

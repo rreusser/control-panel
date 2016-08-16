@@ -7,6 +7,7 @@ var path = require('path')
 var isstring = require('is-string')
 var themes = require('./themes')
 var uuid = require('node-uuid')
+var extend = require('util-extend')
 
 module.exports = Plate
 inherits(Plate, EventEmitter)
@@ -104,6 +105,7 @@ function Plate (items, opts) {
     select: require('./components/select')
   }
 
+  var elements = {}
   var element
   var state = {}
 
@@ -115,6 +117,8 @@ function Plate (items, opts) {
 
   items.forEach(function (item) {
     element = components[item.type](box, item, opts.theme, id)
+
+    elements[item.label] = element
 
     element.on('initialized', function (data) {
       state[item.label] = data
@@ -133,6 +137,21 @@ function Plate (items, opts) {
       self.emit('end')
     })
   })
+
+  this.set = function (newState) {
+    extend(state, newState)
+
+    items.forEach(function (item) {
+      var newValue = newState[item.label]
+      var element = elements[item.label]
+
+      if (element && element.set && newValue !== undefined) {
+        element.set(newValue)
+      }
+    })
+
+    return this
+  }
 
   opts.root.appendChild(box)
 }
